@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>{% block title %}{% endblock %}Djangory</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			.chat_messages {
+				height: 400px;
+				overflow-y: auto;
+			}
+		</style>
+	</head>
+	<body class="m-0 p-0 border-box">
+		<div class="m-0 bg-teal-400 w-screen h-full pb-24">
+			<nav
+				class="flex items-center justify-between px-6 py-6 bg-teal-600 border-b-2 border-teal-500"
+			>
+				<h1 class="text-white text-xl">Djangory</h1>
+				<div class="flex items-center space-x-4">
+					{% if request.user.is_authenticated %}
+					<a href="/rooms/" class="text-white hover:text-teal-200">Rooms</a>
+					<a href="/logout/" class="text-white hover:text-teal-200">Log out</a>
+
+					{% else %}
+					<a href="/login/" class="text-white hover:text-teal-200">Log in</a>
+					<a href="/register/" class="text-white py-3 px-5 rounded-lg bg-teal-400 hover:bg-teal-300">Sign up</a>
+					{% endif %}
+				</div>
+			</nav>
+
+			{% block content %}{% endblock %}
+
+			{% block scripts %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
